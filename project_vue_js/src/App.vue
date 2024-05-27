@@ -2,18 +2,9 @@
   <div id="app">
     <Header />
     <router-view />
-    <!-- <header id="home">
-      <Home />
-    </header> -->
-    <!-- <section class="content" id="about_us"> -->
       <About />
-    <!-- </section>
-    <section class="content blue" id="services"> -->
       <Services />
-    <!-- </section>
-    <section class="content" id="contact_us"> -->
       <Contacts />
-    <!-- </section> -->
     <Footer />
   </div>
 </template>
