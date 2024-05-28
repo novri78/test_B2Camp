@@ -44,6 +44,17 @@ Set Up Project Structure:
     ── main.js
 
 ##### Create Components and Views
+##      Penjelasan views - Home.vue
+Template:
+Menambahkan :class="{ selected: activeMenu === 'home' }" untuk menentukan apakah menu saat ini aktif.
+Menambahkan @click="setActiveMenu('home')" untuk mengubah state aktif saat menu diklik.
+Script:
+Menambahkan data untuk mengelola state aktif.
+Menambahkan methods untuk mengubah state aktif.
+Style:
+Menambahkan gaya hover untuk tautan.
+Menambahkan gaya selected untuk menu yang dipilih dengan border-bottom dan font-weight bold.
+Dengan konfigurasi ini, menu navigasi akan memiliki efek hover dan akan tetap aktif setelah diklik.
 ...
 ##### Place Your Assets
 ...
