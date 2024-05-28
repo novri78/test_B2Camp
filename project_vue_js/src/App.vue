@@ -519,7 +519,6 @@ footer{
         position: absolute;
         bottom: 10px;
         left: 350px;
-        height: ;
     }
     
     .main_container .item0{
