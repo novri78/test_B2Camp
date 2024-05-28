@@ -59,3 +59,15 @@ Dengan konfigurasi ini, menu navigasi akan memiliki efek hover dan akan tetap ak
 ##### Place Your Assets
 ...
 ##### Run Your Project:
+
+
+## Result :
+![image](https://github.com/novri78/test_B2Camp/assets/94629917/b5a5a2b2-64df-468a-bb2b-919d5d8642c6)
+![image](https://github.com/novri78/test_B2Camp/assets/94629917/cd28caca-b38d-47f3-9da1-f3fa08faf0d7)
+![image](https://github.com/novri78/test_B2Camp/assets/94629917/268c4737-1108-4cdc-9960-08787823e726)
+
+
+
+
+
+
