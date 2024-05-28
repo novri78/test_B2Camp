@@ -1,11 +1,12 @@
 <template>
   <div id="app">
     <Header />
-    <router-view />
+    <router-view></router-view>
       <About />
       <Services />
       <Contacts />
     <Footer />
+    <BallAnimation />
   </div>
 </template>
 
@@ -16,6 +17,7 @@ import About from './views/About.vue';
 import Services from './views/Services.vue';
 import Contacts from './views/Contacts.vue';
 import Footer from './components/Footer.vue';
+import BallAnimation from './components/BallAnimation.vue';
 
 export default {
   name: 'App',
@@ -25,7 +27,8 @@ export default {
     About,
     Services,
     Contacts,
-    Footer
+    Footer,
+    BallAnimation
   }
 };
 </script>
@@ -47,6 +50,7 @@ export default {
 *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
     
 }
 
@@ -335,7 +339,29 @@ footer{
     text-align: center;
     padding: 20px 0;
 }
+
+.animated-object {
+  width: 50px;
+  height: 50px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0;
+  animation: moveHorizontal 10s linear infinite;
+}
+
 /* ========================================== */
+@keyframes moveHorizontal {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
 @media only screen and (max-width: 310px) {
     nav .logo a img{
         display: none;
