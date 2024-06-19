@@ -1,24 +1,25 @@
 <template>
   <nav>
     <div class="logo">
-      <a href="#"><img src="@/assets/img/Group 522.png" alt="Logo B2Camp"></a>
+      <router-link to="/" @click="setActiveMenu('home')"><img src="@/assets/img/Group 522.png" alt="Logo B2Camp"></router-link>
     </div>
     <ul class="links">
       <li :class="{ selected: activeMenu === 'home' }">
-        <a href="#home" @click="setActiveMenu('home')">Home</a>
+        <router-link to="/" @click="setActiveMenu('home')">Home</router-link>
       </li>
       <li :class="{ selected: activeMenu === 'about' }">
-        <a href="#about_us" @click="setActiveMenu('about')">About</a>
+        <router-link to="/about" @click="setActiveMenu('about')">About</router-link>
       </li>
       <li :class="{ selected: activeMenu === 'services' }">
-        <a href="#services" @click="setActiveMenu('services')">Services</a>
+        <router-link to="/services" @click="setActiveMenu('services')">Services</router-link>
       </li>
       <li :class="{ selected: activeMenu === 'contact' }">
-        <a href="#contact_us" @click="setActiveMenu('contact')">Contact</a>
+        <router-link to="/contacts" @click="setActiveMenu('contacts')">Contact</router-link>
       </li>
     </ul>
   </nav>
 </template>
+
 
 <script>
 export default {
@@ -35,8 +36,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-/* Add your styles here */
-
-</style>
