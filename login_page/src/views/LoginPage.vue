@@ -4,14 +4,14 @@
       <div class="login-wrapper">
         <h1>B2C-LOGIN.VUE</h1>
         <form @submit.prevent="submit">
-            <label for="email">Email:</label>
+          <label for="email">Email:</label>
           <input type="email" v-model="email" required />
-
           <label for="password">Password:</label>
           <input type="password" v-model="password" required />
-          <button  @click="reset">Reset</button>  
+          <button type="button" @click="reset">Reset</button>
           <button type="submit">Submit</button>
         </form>
+        <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
       </div>
     </div>
   </div>
@@ -25,6 +25,7 @@ export default {
     return {
       email: "",
       password: "",
+      errorMessage: "", // Add error message state
     };
   },
   methods: {
@@ -33,6 +34,7 @@ export default {
       this.password = "";
     },
     submit() {
+      this.errorMessage = ""; // Reset error message before each submission
       this.$axios
         .post("auth/login", {
           email: this.email,
@@ -41,6 +43,10 @@ export default {
         .then((response) => {
           // console.log(response)
           this.getDataUser(response.data);
+        })
+        .catch((error) => {
+          console.error("Login failed:", error.response.data);
+          this.errorMessage = "Login failed: " + (error.response.data.message || "Invalid credentials");
         });
     },
     getDataUser(data) {
@@ -54,10 +60,13 @@ export default {
           console.log("resProfile", response);
           let userdata = Object.assign(response.data, data);
           let forcookie = JSON.stringify(userdata);
-          cookie.set("userdata", forcookie, { expires: 1 });
-          // 1 = 1 jam
+          cookie.set("userdata", forcookie, { expires: 1 }); // 1 day
           this.$store.commit("SET_LOGIN", forcookie);
           this.$router.push({ path: "/home" });
+        })
+        .catch((error) => {
+          console.error("Profile fetch failed:", error.response.data);
+          this.errorMessage = "Profile fetch failed: " + (error.response.data.message || "Error fetching profile");
         });
     },
   },
@@ -66,19 +75,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+.error {
+  color: red;
 }
 
 * {
@@ -93,7 +91,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  
+  background: linear-gradient(135deg, #e2ebf0, #cfd9df);
 }
 
 .container {
@@ -102,38 +100,39 @@ body {
   align-items: center;
   width: 100%;
   max-width: 400px;
-  padding: 50px 50px;
+  padding: 50px;
   margin: 0 auto;
 }
 
 .login-form {
-    background-image: url('@/assets/img/pict_background.jpg');
+  background: url("@/assets/img/pict_background.jpg") no-repeat center center fixed;
   background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
 }
 
 .login-wrapper {
-  background: rgba(255, 255, 255, 0.97);
-  padding: 70px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 40px 30px;
   border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   max-width: 400px;
   width: 100%;
   margin: 50px auto;
-  transition: transform 0.3s ease;
-  margin-top: 80px; 
-  margin-left: 540px; 
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .login-wrapper:hover {
   transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
 h1 {
-  font-weight: 600;
-  color: #333;
+  font-weight: 700;
+  color: #2c3e50;
   text-align: center;
   margin-bottom: 20px;
 }
@@ -145,17 +144,18 @@ h1 {
 label {
   display: block;
   margin-bottom: 5px;
-  color: #666;
+  color: #2c3e50;
   font-weight: 500;
 }
 
 input {
   width: 100%;
   padding: 12px;
-  border: 1px solid #ddd;
+  border: 1px solid #bdc3c7;
   border-radius: 5px;
-  font-size: 16px;
+  font-size: 14px;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  margin-top: 10px;
 }
 
 input:focus {
@@ -166,11 +166,11 @@ input:focus {
 
 button {
   width: 100%;
-  padding: 12px;
+  padding: 10px;
   border: none;
   border-radius: 5px;
   background: linear-gradient(45deg, #3498db, #2980b9);
-//   color: #ffffff;
+  color: #ffffff;
   font-size: 16px;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.3s ease;
@@ -185,7 +185,7 @@ button:hover {
 .register-link {
   text-align: center;
   margin-top: 20px;
-  color: #666;
+  color: #7f8c8d;
 }
 
 .register-link a {
@@ -211,7 +211,8 @@ button:hover {
   }
 
   body {
-    min-height: 500vh;
+    min-height: 100vh;
   }
 }
 </style>
+

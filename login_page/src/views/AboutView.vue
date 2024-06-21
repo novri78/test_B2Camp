@@ -1,27 +1,41 @@
 <template>
   <div>
-    <Nav/>
+    <Nav />
   </div>
   <div class="about-container">
     <h1>About Us</h1>
     <p>
-      Welcome to our application! Our mission is to provide the best user experience.
-      We are constantly improving and updating our services to meet the needs of our users.
+      Welcome to our application! Our mission is to provide the best user
+      experience. We are constantly improving and updating our services to meet
+      the needs of our users.
     </p>
     <p>
-      This app is built using the latest web technologies including Vue.js, Vue Router, Vuex, and Axios.
+      This app is built using the latest web technologies including
+      <b>Vue.js, Vue Router, Vuex, and Axios</b>.
     </p>
     <p>
-      We hope you enjoy using our application. If you have any feedback, feel free to reach out to us.
+      We hope you enjoy using our application. If you have any feedback, feel
+      free to reach out to us.
     </p>
+  </div>
+  <div>
+    <section v-if="userdata">
+      <h1>Bonjour.. I am {{ userdata.name }}</h1>
+      <img :src="userdata.avatar" alt="User Avatar" />
+      <p>As a {{ userdata.role }}</p>
+    </section>
+    <section v-else>
+      <h1>Loading user data...</h1>
+    </section>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import About from "@/views/AboutView.vue";
 import HelloWorld from "@/components/HelloWorld.vue";
 import Logout from "@/views/LogoutPage.vue";
-import Nav from "@/components/Nav.vue"
+import Nav from "@/components/Nav.vue";
 
 export default {
   name: "HomeView",
@@ -31,7 +45,9 @@ export default {
     About,
     Nav
   },
-  computed: {},
+  computed: {
+    ...mapState(["userdata"]),
+  },
   methods: {
     goToHome() {
       this.$router.push("/home");
