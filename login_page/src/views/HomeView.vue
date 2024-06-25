@@ -49,6 +49,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
+.home {
+  background: url("@/assets/img/pict_background2.png") no-repeat center center fixed;
+  background-size: cover;
+  width: 100%;
+  height: 85vh;
+}
 /* Navbar Styles */
 .navbar {
   display: flex;
@@ -90,8 +97,8 @@ export default {
 
 .about-container {
   max-width: 800px;
-  margin: 50px auto;
-  padding: 20px;
+  margin: 10px auto;
+  padding: 10px;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);

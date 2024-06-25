@@ -105,13 +105,13 @@ body {
 }
 
 .login-form {
-  background: url("@/assets/img/pict_background.jpg") no-repeat center center fixed;
+  background: url("@/assets/img/pexels-pixabay-531880.jpg") no-repeat center center fixed;
   background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100vh;
+  height: 90vh;
 }
 
 .login-wrapper {
@@ -143,6 +143,7 @@ h1 {
 
 label {
   display: block;
+  margin-top: 10px;
   margin-bottom: 5px;
   color: #2c3e50;
   font-weight: 500;
