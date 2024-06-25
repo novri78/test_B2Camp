@@ -5,6 +5,7 @@ import axios from 'axios';
 import store from './store';
 import Cookies from 'js-cookie';
 
+//1st Step define URL & Headers
 const axiosInstance = axios.create({
   baseURL: 'https://api.escuelajs.co/api/v1/',
   timeout: 180000, // 3 menit
@@ -13,6 +14,7 @@ const axiosInstance = axios.create({
   }
 });
 
+//2ns step define cookie
 const userdata = Cookies.get('userdata');
 if (userdata !== undefined) {
   try {

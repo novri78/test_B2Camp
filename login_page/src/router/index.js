@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Login from '@/views/LoginPage.vue'
 import HomeView from '@/views/HomeView.vue'
-import AboutView from '@/views/AboutView.vue'
+import Profile from '@/views/ProfileView.vue'
 import store from '@/store'
 
 
@@ -14,10 +14,11 @@ const routes = [
       guest: true
     }
   },
+
   {
-    path: '/about',
-    name: 'about',
-    component: AboutView,
+    path: '/profile',
+    name: 'profile',
+    component: Profile,
     meta: {
       requireAuth: true,
     }
@@ -41,18 +42,16 @@ const router = createRouter({
 // kondisi disaat login
 router.beforeEach((to, from, next) => {
   //1st condition
-  if (to.matched.some(record => record.meta.requireAuth)) {
-    if (store.state.userdata == null) {
-      ({ path: '/' })
-    }
+  // Jika memerlukan autentikasi dan pengguna tidak masuk
+  if (to.matched.some(record => record.meta.requireAuth) && !store.state.isLoggedIn) {
+    next({ path: '/' });
   }
-  if (to.matched.some(record => record.meta.guest)) {
-    if (store.state.userdata !== null) {
-      ({ path: '/home' })
-    }
-
+  // Jika tamu dan pengguna sudah masuk
+  else if (to.matched.some(record => record.meta.guest) && store.state.isLoggedIn) {
+    next({ path: '/home' });
+  } else {
+    next();
   }
-  next();
 });
 
 

@@ -18,10 +18,6 @@ export default createStore({
     },
   },
   actions: {
-    login({ commit }, userdata) {
-      commit('SET_LOGIN', userdata);
-      Cookies.set('userdata', JSON.stringify(userdata), { expires: 1 });
-    },
     logout({ commit }) {
       commit('SET_LOGOUT');
     },

@@ -1,30 +1,37 @@
 <template>
   <div class="home">
-    <div>
-      <Nav/>
-    </div>
-    
     <div class="logo-home-vue">
       <img alt="Vue logo" src="../assets/logo.png" />
     </div>
 
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <div class="about-container">
+      <h1>About Us</h1>
+      <p>
+        Welcome to our application! Our mission is to provide the best user
+        experience. We are constantly improving and updating our services to
+        meet the needs of our users.
+      </p>
+      <p>
+        This app is built using the latest web technologies including
+        <b>Vue.js, Vue Router, Vuex, and Axios</b>.
+      </p>
+      <p>
+        We hope you enjoy using our application. If you have any feedback, feel
+        free to reach out to us.
+      </p>
+    </div>
   </div>
 </template>
 
 <script>
-import About from "@/views/AboutView.vue";
-import HelloWorld from "@/components/HelloWorld.vue";
+import About from "@/views/ProfileView.vue";
 import Logout from "@/views/LogoutPage.vue";
-import Nav from "@/components/Nav.vue"
 
 export default {
   name: "HomeView",
   components: {
-    HelloWorld,
     Logout,
     About,
-    Nav
   },
   computed: {},
   methods: {
@@ -34,6 +41,9 @@ export default {
     goToAbout() {
       this.$router.push("/about");
     },
+    goToProduct() {
+      this.$router.push("/product");
+    }
   },
 };
 </script>
@@ -78,6 +88,29 @@ export default {
   margin: 20px 0;
 }
 
+.about-container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.about-container h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.about-container p {
+  font-size: 1.2em;
+  line-height: 1.6;
+  color: #666;
+  margin-bottom: 20px;
+}
+
 .logout-button {
   padding: 10px 20px;
   border: none;
@@ -86,7 +119,8 @@ export default {
   color: #ffffff;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease,
+    box-shadow 0.3s ease;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 

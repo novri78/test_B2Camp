@@ -6,8 +6,11 @@
 export default {
   methods: {
     logout() {
-      this.$store.dispatch("logout");
-      this.$router.push("/"); // Redirect to login page after logout
+      this.$store.dispatch("logout").then(() => {
+        
+        this.$router.push("/"); // Redirect to login page after logout 
+            
+      })
     },
   },
 };

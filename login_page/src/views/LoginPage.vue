@@ -19,6 +19,7 @@
 
 <script>
 import cookie from "js-cookie";
+
 export default {
   name: "Login",
   data() {
@@ -61,7 +62,7 @@ export default {
           let userdata = Object.assign(response.data, data);
           let forcookie = JSON.stringify(userdata);
           cookie.set("userdata", forcookie, { expires: 1 }); // 1 day
-          this.$store.commit("SET_LOGIN", forcookie);
+          this.$store.commit("SET_LOGIN", userdata);
           this.$router.push({ path: "/home" });
         })
         .catch((error) => {
@@ -73,7 +74,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .error {
   color: red;
@@ -172,47 +172,14 @@ button {
   background: linear-gradient(45deg, #3498db, #2980b9);
   color: #ffffff;
   font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.3s ease;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 button:hover {
   background: linear-gradient(45deg, #2980b9, #3498db);
-  transform: scale(1.05);
-}
-
-.register-link {
-  text-align: center;
-  margin-top: 20px;
-  color: #7f8c8d;
-}
-
-.register-link a {
-  color: #3498db;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.register-link a:hover {
-  text-decoration: underline;
-}
-
-@media (max-width: 768px) {
-  .login-wrapper {
-    padding: 30px 20px;
-    margin: 20px auto;
-  }
-}
-
-@media (max-width: 480px) {
-  .login-wrapper {
-    padding: 20px 15px;
-  }
-
-  body {
-    min-height: 100vh;
-  }
+  transform: translateY(-2px);
 }
 </style>
-
