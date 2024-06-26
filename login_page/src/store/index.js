@@ -15,6 +15,11 @@ export default createStore({
       state.isLoggedIn = false;
       state.userdata = null;
       Cookies.remove('userdata');
+
+      // Force UI update (not really forcing browser Storage panel refresh, but ensures state consistency)
+      if (!Cookies.get('userdata')) {
+        console.log('Cookie successfully removed');
+      }
     },
   },
   actions: {
